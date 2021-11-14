@@ -1,4 +1,4 @@
-const DEFAULT_COLOR = '#333333'
+const DEFAULT_COLOR = '#000000'
 const DEFAULT_MODE = 'color'
 const DEFAULT_SIZE = 16
 
@@ -19,7 +19,7 @@ function setCurrentSize(newSize) {
     currentSize = newSize
 }
 
-//HOISTING??
+//SETTINGS VARIABLES
 const colorPicker = document.getElementById('colorPicker')
 const colorBtn = document.getElementById('colorBtn')
 const rainbowBtn = document.getElementById('rainbowBtn')
@@ -29,7 +29,9 @@ const sizeValue = document.getElementById('sizeValue')
 const sizeSlider = document.getElementById('sizeSlider')
 const grid = document.getElementById('grid')
 
+//SETTINGS BUTTONS
 colorPicker.onchange = (e) => setCurrentColor(e.target.value);
+colorPicker.onmouseout = () => setCurrentMode('color');
 colorBtn.onclick = () => setCurrentMode('color');
 rainbowBtn.onclick = () => setCurrentMode('rainbow'); 
 eraserBtn.onclick = () => setCurrentMode('eraser');
@@ -38,7 +40,7 @@ sizeSlider.onmousemove = (e) => updateSizeValue(e.target.value);
 sizeSlider.onchange = (e) => changeSize(e.target.value); 
 
 
-// CREATE GRID
+//CREATE GRID
 function setupGrid(size) {
     grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`
     grid.style.gridTemplateRows = `repeat(${size}, 1fr)`
@@ -50,9 +52,8 @@ function setupGrid(size) {
     }
   }
   
-  //COLOR CHANGES
- 
-  function changeColor(e) {
+  //DYNAMIC COLOR MODES
+   function changeColor(e) {
     if (currentMode === 'rainbow') {
       const randomR = Math.floor(Math.random() * 256)
       const randomG = Math.floor(Math.random() * 256)
@@ -61,15 +62,11 @@ function setupGrid(size) {
     } else if (currentMode === 'color') {
       e.target.style.backgroundColor = currentColor
     } else if (currentMode === 'eraser') {
-      e.target.style.backgroundColor = '#fefefe'
+      e.target.style.backgroundColor = 'lightsteelblue'
     }
   }
 
-  //SIZE CHANGES
- 
-
- 
-  
+  //DYNAMIC GRID CHANGES  
   function changeSize(value) {
     setCurrentSize(value)
     updateSizeValue(value)
@@ -89,9 +86,8 @@ function setupGrid(size) {
     grid.innerHTML = ''
   }
 
-//BUTTONS & SETTINGS
 
-
+//DYNAMIC BUTTONS
 function activateButton(newMode) {
     if (currentMode === 'rainbow') {
     rainbowBtn.classList.remove('active')
