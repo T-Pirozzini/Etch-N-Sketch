@@ -10,7 +10,7 @@ function setCurrentColor(newColor) {
     currentColor = newColor;
 }
 
-  function setCurrentMode(newMode) {
+function setCurrentMode(newMode) {
     activateButton(newMode)
     currentMode = newMode
 }
