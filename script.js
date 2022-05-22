@@ -1,35 +1,35 @@
-const DEFAULT_COLOR = '#000000'
-const DEFAULT_MODE = 'color'
-const DEFAULT_SIZE = 16
+// initialize settings
+let currentColor = '#000000'
+let currentMode = 'color'
+let currentSize = 16
 
-let currentColor = DEFAULT_COLOR
-let currentMode = DEFAULT_MODE
-let currentSize = DEFAULT_SIZE
-
-function setCurrentColor(newColor) {
+// set/change color
+const setCurrentColor = (newColor) => {  
     currentColor = newColor;
-}
+};
 
-function setCurrentMode(newMode) {
+// set/change mode
+const setCurrentMode = (newMode) => {
     activateButton(newMode)
     currentMode = newMode
-}
+};
 
-function setCurrentSize(newSize) {
+// set/change mode
+const setCurrentSize = (newSize) => {
     currentSize = newSize
-}
+};
 
-//SETTINGS VARIABLES
-const colorPicker = document.getElementById('colorPicker')
-const colorBtn = document.getElementById('colorBtn')
-const rainbowBtn = document.getElementById('rainbowBtn')
-const eraserBtn = document.getElementById('eraserBtn')
-const clearBtn = document.getElementById('clearBtn')
-const sizeValue = document.getElementById('sizeValue')
-const sizeSlider = document.getElementById('sizeSlider')
+// settings variables
+const colorPicker = document.getElementById('color-picker')
+const colorBtn = document.getElementById('color-btn')
+const rainbowBtn = document.getElementById('rainbow-btn')
+const eraserBtn = document.getElementById('eraser-btn')
+const clearBtn = document.getElementById('clear-btn')
+const sizeValue = document.getElementById('size-value')
+const sizeSlider = document.getElementById('size-slider')
 const grid = document.getElementById('grid')
 
-//SETTINGS BUTTONS
+// settings buttons
 colorPicker.onchange = (e) => setCurrentColor(e.target.value);
 colorPicker.onmouseout = () => setCurrentMode('color');
 colorBtn.onclick = () => setCurrentMode('color');
@@ -39,8 +39,7 @@ clearBtn.onclick = () => reloadGrid();
 sizeSlider.onmousemove = (e) => updateSizeValue(e.target.value);
 sizeSlider.onchange = (e) => changeSize(e.target.value); 
 
-
-//CREATE GRID
+// initialize grid
 function setupGrid(size) {
     grid.style.gridTemplateColumns = `repeat(${size}, 1fr)`
     grid.style.gridTemplateRows = `repeat(${size}, 1fr)`
@@ -52,7 +51,7 @@ function setupGrid(size) {
     }
   }
   
-  //DYNAMIC COLOR MODES
+  // switch between color modes
    function changeColor(e) {
     if (currentMode === 'rainbow') {
       const randomR = Math.floor(Math.random() * 256)
@@ -62,11 +61,11 @@ function setupGrid(size) {
     } else if (currentMode === 'color') {
       e.target.style.backgroundColor = currentColor
     } else if (currentMode === 'eraser') {
-      e.target.style.backgroundColor = 'lightsteelblue'
+      e.target.style.backgroundColor = 'whitesmoke'
     }
   }
 
-  //DYNAMIC GRID CHANGES  
+  // change the size of the grid  
   function changeSize(value) {
     setCurrentSize(value)
     updateSizeValue(value)
@@ -86,8 +85,7 @@ function setupGrid(size) {
     grid.innerHTML = ''
   }
 
-
-//DYNAMIC BUTTONS
+// toggle modes on and off
 function activateButton(newMode) {
     if (currentMode === 'rainbow') {
     rainbowBtn.classList.remove('active')
@@ -108,6 +106,6 @@ function activateButton(newMode) {
 
 
   window.onload = () => {
-    setupGrid(DEFAULT_SIZE)
-    activateButton(DEFAULT_MODE)
+    setupGrid(currentSize)
+    activateButton(currentMode)
   }
