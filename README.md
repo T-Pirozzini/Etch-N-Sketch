@@ -11,7 +11,7 @@ Home
 Hello World
 ![Hello World](https://github.com/T-Pirozzini/Etch-N-Sketch/blob/main/assets/hello-world.png?raw=true)
 
-## Odin Project Course Content: 
+## Odin Project Course Content
 
 
  
